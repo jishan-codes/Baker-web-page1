@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A-One Bakers | Fresh bakes, every morning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cocoa: #2b1b14;
+    --pistachio: #eef3e4;
+    --leaf: #cfdfb8;
+    --strawberry: #c8344f;
+    --butter: #f5ce5b;
+    --white: #ffffff;
+    --serif: "Young Serif", Georgia, serif;
+    --sans: "DM Sans", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { font-family: var(--sans); color: var(--cocoa); background: var(--pistachio); line-height: 1.6; font-size: 17px; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--strawberry); outline-offset: 3px;
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.1; }
+  h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
+  p { max-width: 60ch; }
+  section { padding: 5rem 1.5rem; }
+  .wrap { max-width: 1060px; margin: 0 auto; }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 10; background: var(--cocoa); color: var(--butter); }
+  .nav { max-width: 1060px; margin: 0 auto; padding: .9rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+  .logo { font-family: var(--serif); font-size: 1.4rem; text-decoration: none; }
+  .nav ul { list-style: none; display: flex; gap: 1.4rem; flex-wrap: wrap; }
+  .nav ul a { text-decoration: none; color: var(--white); font-weight: 500; padding-bottom: 2px; border-bottom: 2px solid transparent; }
+  .nav ul a:hover { border-color: var(--butter); }
+
+  /* Home */
+  #home { background: var(--butter); padding-top: 4rem; padding-bottom: 5rem; }
+  .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center; }
+  .hero h1 { font-size: clamp(3rem, 9vw, 6.2rem); letter-spacing: -.02em; margin-bottom: 1.2rem; }
+  .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+  .btn { display: inline-block; padding: .85rem 1.8rem; border-radius: 999px; background: var(--cocoa); color: var(--butter); text-decoration: none; font-weight: 700; border: 2px solid var(--cocoa); cursor: pointer; font-family: var(--sans); font-size: 1rem; }
+  .btn:hover { background: var(--strawberry); border-color: var(--strawberry); color: var(--white); }
+  .btn.alt { background: transparent; color: var(--cocoa); margin-left: .6rem; }
+  .btn.alt:hover { background: var(--cocoa); color: var(--butter); border-color: var(--cocoa); }
+  .oven-tag { justify-self: center; width: min(320px, 80vw); aspect-ratio: 1; border-radius: 50%; background: var(--strawberry); color: var(--white); display: grid; place-content: center; text-align: center; font-family: var(--serif); box-shadow: 0 0 0 14px var(--butter), 0 0 0 18px var(--strawberry); transform: rotate(-6deg); }
+  .oven-tag span { display: block; font-size: 4.5rem; line-height: 1; }
+  .oven-tag small { font-family: var(--sans); font-size: 1rem; margin-top: .4rem; }
+
+  /* About */
+  #about .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  #about p + p { margin-top: 1rem; }
+  .facts { list-style: none; background: var(--white); border-radius: 24px 24px 24px 0; padding: 1.8rem; border-left: 8px solid var(--strawberry); }
+  .facts li { padding: .8rem 0; border-bottom: 1px solid var(--leaf); }
+  .facts li:last-child { border-bottom: 0; }
+  .facts b { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; display: block; color: var(--strawberry); }
+
+  /* Menu */
+  #menu { background: var(--cocoa); color: var(--pistachio); }
+  #menu h2 { color: var(--butter); }
+  .menu-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 2rem; }
+  .menu-cols h3 { color: var(--butter); font-size: 1.5rem; margin-bottom: 1rem; }
+  .menu-cols ul { list-style: none; }
+  .menu-cols li { display: flex; justify-content: space-between; gap: 1rem; padding: .7rem 0; border-bottom: 1px dashed rgba(238,243,228,.35); }
+  .menu-cols li small { display: block; opacity: .75; font-size: .85rem; }
+  .price { font-weight: 700; color: var(--butter); white-space: nowrap; }
+
+  /* Reviews */
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+  .review { background: var(--white); padding: 1.6rem; border-radius: 4px 28px 4px 28px; }
+  .review:nth-child(2) { background: var(--leaf); }
+  .stars { color: var(--strawberry); letter-spacing: 3px; margin-bottom: .6rem; }
+  .review cite { display: block; margin-top: 1rem; font-style: normal; font-weight: 700; }
+
+  /* Contact */
+  #contact { background: var(--leaf); }
+  #contact .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .details { list-style: none; margin-top: 1rem; }
+  .details li { padding: .6rem 0; }
+  .details b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.2rem; }
+  form { background: var(--white); padding: 1.8rem; border-radius: 24px; display: grid; gap: 1rem; }
+  label { font-weight: 700; display: grid; gap: .3rem; }
+  input, textarea { font: inherit; padding: .7rem .9rem; border: 2px solid var(--leaf); border-radius: 10px; background: var(--pistachio); }
+  input:focus, textarea:focus { border-color: var(--strawberry); }
+  textarea { min-height: 120px; resize: vertical; }
+
+  footer { background: var(--cocoa); color: var(--butter); text-align: center; padding: 1.5rem; font-size: .95rem; }
+
+  /* Mobile */
+  @media (max-width: 800px) {
+    .hero, #about .grid, #contact .grid, .menu-cols, .reviews { grid-template-columns: 1fr; }
+    .oven-tag { order: -1; width: 220px; }
+    .oven-tag span { font-size: 3.2rem; }
+    .btn.alt { margin: .6rem 0 0; }
+    section { padding: 3.5rem 1.2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#home">A-One Bakers</a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home">
+    <div class="wrap hero">
+      <div>
+        <h1>Baked fresh before you wake up.</h1>
+        <p>Breads, cakes and tea-time snacks from A-One Bakers, made every morning with real butter and no shortcuts.</p>
+        <a class="btn" href="#menu">See the menu</a>
+        <a class="btn alt" href="#contact">Order a cake</a>
+      </div>
+      <div class="oven-tag" aria-hidden="true">
+        <span>6 AM</span>
+        <small>first batch out of the oven</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap grid">
+      <div>
+        <h2>A family bakery with one rule: only the best.</h2>
+        <p>A-One Bakers started as a small neighbourhood oven. Today we still mix our dough by hand, bake in small batches and sell out of the loaves before the afternoon.</p>
+        <p>We use fresh butter, real fruit and no preservatives. Whether it is a pav for breakfast or a three-tier birthday cake, it is baked the same day you pick it up.</p>
+      </div>
+      <ul class="facts">
+        <li><b>Baked daily</b> Every item is made fresh each morning.</li>
+        <li><b>Custom cakes</b> Order 24 hours ahead for birthdays and weddings.</li>
+        <li><b>Eggless options</b> Available for most cakes and cookies.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="wrap">
+      <h2>Today's menu</h2>
+      <p>Prices are for one piece unless noted. Cakes are sold by the half kilo.</p>
+      <div class="menu-cols">
+        <div>
+          <h3>Breads</h3>
+          <ul>
+            <li><span>Milk bread <small>Soft sandwich loaf</small></span><span class="price">₹50</span></li>
+            <li><span>Whole wheat loaf <small>No maida</small></span><span class="price">₹70</span></li>
+            <li><span>Butter pav <small>Pack of 6</small></span><span class="price">₹40</span></li>
+            <li><span>Garlic bread <small>Baked with herb butter</small></span><span class="price">₹90</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cakes</h3>
+          <ul>
+            <li><span>Chocolate truffle <small>Per half kg</small></span><span class="price">₹450</span></li>
+            <li><span>Black forest <small>Per half kg</small></span><span class="price">₹400</span></li>
+            <li><span>Pineapple <small>Per half kg</small></span><span class="price">₹380</span></li>
+            <li><span>Red velvet <small>Per half kg</small></span><span class="price">₹550</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Snacks and sweets</h3>
+          <ul>
+            <li><span>Veg puff <small>Flaky, with masala filling</small></span><span class="price">₹25</span></li>
+            <li><span>Butter cookies <small>Box of 10</small></span><span class="price">₹120</span></li>
+            <li><span>Chocolate brownie <small>Warm on request</small></span><span class="price">₹80</span></li>
+            <li><span>Khari <small>Pack of 250 g</small></span><span class="price">₹100</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="wrap">
+      <h2>What our customers say</h2>
+      <div class="reviews">
+        <blockquote class="review">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>The chocolate truffle cake was the star of my daughter's birthday. Everyone asked where it came from.</p>
+          <cite>Priya S.</cite>
+        </blockquote>
+        <blockquote class="review">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>I buy the milk bread every morning. It is still soft the next day, which says a lot.</p>
+          <cite>Rahul M.</cite>
+        </blockquote>
+        <blockquote class="review">
+          <div class="stars" aria-label="4 out of 5 stars">★★★★☆</div>
+          <p>Fair prices and friendly staff. The veg puffs sell out fast, so go early.</p>
+          <cite>Anita D.</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap grid">
+      <div>
+        <h2>Order or visit us</h2>
+        <p>Send us a message to book a cake, or drop by the shop.</p>
+        <ul class="details">
+          <li><b>Address</b> Shop No. 1, Main Road, Your City, 000000</li>
+          <li><b>Phone</b> <a href="tel:+910000000000">+91 00000 00000</a></li>
+          <li><b>Email</b> <a href="mailto:hello@aonebakers.example">hello@aonebakers.example</a></li>
+          <li><b>Hours</b> Every day, 6 AM to 10 PM</li>
+        </ul>
+      </div>
+      <form action="mailto:hello@aonebakers.example" method="post" enctype="text/plain">
+        <label>Your name <input type="text" name="name" required></label>
+        <label>Phone number <input type="tel" name="phone" required></label>
+        <label>What would you like to order? <textarea name="order" required></textarea></label>
+        <button class="btn" type="submit">Send order request</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 A-One Bakers. Baked fresh every day.</p>
+</footer>
+
+</body>
+</html>
